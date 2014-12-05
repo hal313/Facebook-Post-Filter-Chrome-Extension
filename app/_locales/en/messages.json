@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Facebook Post Filter",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "Filter those pesky Facebook posts!",
+    "description": "The description of the application"
+  }
+}
