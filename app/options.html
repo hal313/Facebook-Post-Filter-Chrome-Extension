@@ -8,11 +8,64 @@
         <!-- build:css styles/main.css -->
         <link href="styles/main.css" rel="stylesheet">
         <!-- endbuild -->
+
+        <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+        <link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
     </head>
     <body>
-        <h1>'Allo, 'Allo!</h1>
-                
+        <!-- // TODO: Disable show-name-in-header if show-header is not checked -->
+        <!-- // TODO: Loader for save/get -->
+        <!-- // TODO: Use bootstrap? -->
+        <!-- // TODO: Documentation/examples/hints -->
+        <!-- // TODO: Document that the search is case insensitive, or provide option per regex -->
+        <form role="form">
+            <div class="form-group">
+                <label for="js-form-regex">Regex</label>
+                <input type="text" class="form-control" id="js-form-regex" data-setting-name="regex"/>
+            </div>
+
+            <div class="form-group">
+                <label for="js-form-name">Regex</label>
+                <input type="text" class="form-control" id="js-form-name" data-setting-name="name"/>
+            </div>
+
+            <div class="checkbox">
+                <label><input type="checkbox" id="js-form-show-header" data-setting-name="show-header"> Show header</label>
+            </div>
+
+            <div class="checkbox">
+                <label><input type="checkbox" id="js-form-show-name-in-header" data-setting-name="show-name-in-header"> Show the name of the match in header</label>
+            </div>
+
+        </form>
+
+        <div class="btn btn-primary" id="js-save-button">Save</div>
+
+        <!-- // The modals -->
+        <div>
+
+            <div id="js-settings-saved-modal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">Settings Saved</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Your settings have been saved!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
         <!-- build:js scripts/vendor.js -->
+        <script src="bower_components/jQuery/dist/jquery.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- bower:js -->
         <!-- endbower -->
         <!-- endbuild -->
