@@ -210,7 +210,7 @@ module.exports = function (grunt) {
     // cssmin: {
     //   dist: {
     //     files: {
-    //       '<%= config.dist %>/styles/main.css': [
+    //       '<%= config.dist %>/styles/contentscript.css': [
     //         '<%= config.app %>/styles/{,*/}*.css'
     //       ]
     //     }

@@ -1,21 +1,11 @@
-'use strict';
+/*global chrome:false */
 
-// Listen for installs
-chrome.runtime.onInstalled.addListener(function (details) {
-  //console.log('previousVersion', details.previousVersion);
-});
+(function() {
+    'use strict';
 
-//chrome.storage.sync.get(function(settings) {
-//    console.log('background page got', settings);
-//});
+    // Listen for installs
+    chrome.runtime.onInstalled.addListener(function (details) {
+        //console.log('previousVersion', details.previousVersion);
+    });
 
-//chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-//    if (request.method == "getSettings") {
-//        chrome.storage.sync.get(function(settings) {
-//            console.log('background page got', settings);
-//            sendResponse(settings);
-//        });
-//    } else {
-//        sendResponse({});
-//    }
-//});
+})();

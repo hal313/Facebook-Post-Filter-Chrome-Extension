@@ -1,0 +1,9 @@
+div.removed {
+    background-color: #F6F7F8;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+div.removed.content-hidden {
+    margin-bottom: 10px;
+}

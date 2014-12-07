@@ -1,17 +1,15 @@
 <!doctype html>
 <html>
     <head>
-        <!-- // TODO: Figure out how to specify these correctly -->
-        <!-- build:css bower_components/bootstrap/dist/css/bootstrap.css -->
+        <!-- build:css styles/thirdparty.css -->
         <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-        <!-- build:css bower_components/bootstrap/dist/css/bootstrap-theme.css -->
         <link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
         <!-- bower:css -->
         <!-- endbower -->
         <!-- endbuild -->
 
-        <!-- build:css styles/main.css -->
-        <link href="styles/main.css" rel="stylesheet">
+        <!-- build:css styles/options.css -->
+        <link href="styles/options.css" rel="stylesheet">
         <!-- endbuild -->
 
     </head>
@@ -165,27 +163,18 @@
 
         </div>
 
-        <!-- // TODO: Figure out how to specify these correctly -->
-        <!-- build:js scripts/vendor.js -->
-        <script src="bower_components/jQuery/dist/jquery.min.js"></script>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- build:js scripts/thirdparty.js -->
         <!-- bower:js -->
+        <script src="bower_components/jQuery/dist/jquery.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
-        <!-- build:js scripts/SettingsManager.js -->
+
+        <!-- build:js scripts/vendor.js -->
         <script src="scripts/SettingsManager.js"></script>
-        <!-- endbuild -->
-
-        <!-- build:js scripts/TemplateManager.js -->
         <script src="scripts/TemplateManager.js"></script>
-        <!-- endbuild -->
-
-        <!-- build:js scripts/UISettingsManager.js -->
         <script src="scripts/UISettingsManager.js"></script>
-        <!-- endbuild -->
-
-        <!-- build:js scripts/options.js -->
         <script src="scripts/options.js"></script>
         <!-- endbuild -->
 
@@ -194,7 +183,6 @@
             <div class="form-group" id="js-regex-id-{regex-id}" data-setting-array-id="{regex-id}">
                 <label for="js-form-regex-{regex-id}" class="control-label col-lg-1">Regex</label>
                 <div class="col-lg-4">
-                    <!--<input type="text" id="js-form-regex-{regex-id}" class="form-control" data-setting-array-key-validate="empty:ignore" data-setting-array-key="regex" value="{regex}"/>-->
                     <input type="text" id="js-form-regex-{regex-id}" class="form-control" data-setting-array-key-validate="empty:ignore" data-setting-array-key="regex"/>
                 </div>
 

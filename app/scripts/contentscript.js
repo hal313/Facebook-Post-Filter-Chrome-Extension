@@ -11,12 +11,17 @@
 // TODO: Use GitHub packages
 // TODO: Auto-increment version
 // TODO: Build correctly
+// TODO: Icon
+// TODO: grunt debug
+// TODO: Use less files
 
-// DEPS: jQuery, bootstrap
+// TODO: Get working locally
+// TODO: Fix compressed reset functionality
+
+// DEPS: jQuery
 
 (function() {
     'use strict';
-
 
     chrome.storage.sync.get(function(settings) {
 
