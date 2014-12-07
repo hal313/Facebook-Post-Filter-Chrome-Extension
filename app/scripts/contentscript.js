@@ -4,51 +4,39 @@
 // TODO: Get the post type and allow filtering by type, author, etc.
 // TODO: Advanced config for hidden text (show match?)
 
-
-//chrome.runtime.sendMessage({method: "getSettings"}, function(response) {
-//    console.log(response.status);
-//});
-
-
 chrome.storage.sync.get(function(settings) {
-    // TODO: Get default objects from default file?
-//    console.log('settings', settings);
 
+    console.log('settings', settings);
+
+    // Get the feed items from the page
     var extractFeedItems = function() {
-        // TODO: Get from config/options?
-        // _4-u2 mbm _5jmm _5pat _5v3q _2l4l
-        // _4-u2 mbm _5jmm _5pat _5v3q _x72
-        return $('._4-u2.mbm._5jmm._5pat._5v3q');
+        return $(settings['feed-item-selector']);
     }
 
-
+    // Extract the user content from the feed item
     var extractText = function(feedItem) {
         return $(feedItem).find('.userContent').first()[0].innerText;
     };
 
+    // Determine if the text matches
     var isMatch = function(text, matcher) {
+        // TODO: Cachce the match regexes!
         return new RegExp(matcher, 'i').test(text);
     };
 
+    // Get the regexes to use (from the settings)
     var getRegexes = function() {
-        // TODO: Get from config
-//        return [
-//            {regex: 'e', name: 'contains an e'},
-//            {regex: 'say', name: 'contains say'}
-//        ];
-        return [
-            {regex: settings.regex, name: settings.name}
-        ];
+        return settings.regexes;
     };
 
-// TODO: Option (-1 is infinite)
-    var removedItemsLimit = -1;
+    var removedItemsLimit = settings['feed-item-remove-limit'];
 
-// TODO: Remove 'text' and 'regex' param
-// TODO: Rename as removeFeedItem
-    var handleRemove = function($feedItem, text, regex) {
-
+    // TODO: Remove 'text' and 'regex' param?
+    var removeFeedItem = function($feedItem, text, regex) {
+        // Check to see if the limit has been reached
         if (0 !== removedItemsLimit) {
+
+            // Check to see if the item has been processed
             if (!$feedItem.data('removed')) {
 
                 // Mark this item as processed
@@ -56,14 +44,16 @@ chrome.storage.sync.get(function(settings) {
 
                 // Create a new item
                 // TODO: CLOSURE!
-                // TODO: Add close button
+                // TODO: Add close button?
                 // TODO: Break out settings into separate object with constants
 
-                // Fade out the post
-                $feedItem.hide();
+                // Fade out the pos
+                // TODO: .hide() instead?
+                $feedItem.fadeOut();
 
                 // Insert the new item
                 if (!!settings['show-header']) {
+                    // TODO: New option for hidden text?
                     var headerText = 'Hidden';
                     if (!!settings['show-name-in-header']) {
                         headerText += ' [' + regex.name + ']';
@@ -90,9 +80,9 @@ chrome.storage.sync.get(function(settings) {
                 removedItemsLimit--;
             }
         }
-
     };
 
+    // On load, start the replacements
     $(function() {
 
         // Register an observer for the DOM
@@ -101,12 +91,19 @@ chrome.storage.sync.get(function(settings) {
             // Get the feed items
             var $feedItems = extractFeedItems();
 
+            // For each feed item, determine if it needs to be replaced
             $feedItems.each(function(index, feedItem) {
+                // Get as a jQuery object
                 var $feedItem = $(feedItem);
+
+                // Get the text
                 var text = extractText($feedItem);
+
+                // Test against all regexes
                 $.each(getRegexes(), function(i, regex) {
+                    // If it matches, remove it
                     if (isMatch(text, regex.regex)) {
-                        handleRemove($feedItem, text, regex);
+                        removeFeedItem($feedItem, text, regex);
                     }
                 });
             });

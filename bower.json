@@ -2,7 +2,8 @@
   "name": "facebook-post-filter",
   "version": "0.0.0",
   "dependencies": {
-    "jQuery": "~2.1.1"
+    "jQuery": "~2.1.1",
+    "bootstrap": "~3.3.1"
   },
   "devDependencies": {}
 }
