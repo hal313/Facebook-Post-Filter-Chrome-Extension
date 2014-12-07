@@ -3,8 +3,6 @@
 /*global SettingsManager:false */
 /*global UISettingsManager:false */
 
-// DEPS: jQuery, TemplateManager, SettingsManager, UISettingsManager
-
 // TODO: Use SettingsManager callbacks
 
 (function() {
@@ -20,9 +18,30 @@
             return _getNextRegexId.seed++;
         };
 
+        var _defaultSettings = {
+            'regexes': [
+                {
+                    'regex': 'cat|kittens|kitty',
+                    'name': 'Feline'
+                },
+                {
+                    'regex': 'feet',
+                    'name': 'Feet'
+                },
+                {
+                    'regex': 'babies|infant|kids',
+                    'name': 'Babies'
+                }
+            ],
+            'show-header': true,
+            'show-name-in-header': true,
+            'feed-item-selector': '._4-u2.mbm._5jmm._5pat._5v3q',
+            'feed-item-remove-limit': 25
+        };
+
         // Pass in a default resolver map, keyed by the template name
         var templateManager = new TemplateManager({'regex-template': [{regex: 'regex-id', replacement: _getNextRegexId}]});
-        var settingsManager = new SettingsManager();
+        var settingsManager = new SettingsManager(_defaultSettings);
         var uiSettingsManager = new UISettingsManager(templateManager);
 
         // Load the settings
