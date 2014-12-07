@@ -12,8 +12,11 @@ var SettingsManager = function() {
             {
                 'regex': 'feet',
                 'name': 'Feet'
+            },
+            {
+                'regex': 'babies|infant|kids',
+                'name': 'Babies'
             }
-
         ],
         'show-header': true,
         'show-name-in-header': true,
