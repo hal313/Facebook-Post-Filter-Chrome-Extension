@@ -1,15 +1,22 @@
-// TODO: Make singleton
+/*global jQuery:false */
+/*global console:false */
+
+// TODO: Make this a singleton
+// TODO: Use logger instead of console
+
+// DEPS: jQuery
 
 var TemplateManager = function(defaultResolverMap) {
+    'use strict';
 
     // Load the templates
-    var templateCache = [];
+    var _templateCache = [];
 
     var _hasLoaded = false;
 
     var _load = function() {
         // Get all the scripts
-        var $scripts = $('script');
+        var $scripts = jQuery('script');
 
         // Add each template into the cache
         $scripts.each(function(index, script) {
@@ -19,12 +26,12 @@ var TemplateManager = function(defaultResolverMap) {
 
             // Check to see if the script tyoe is 'text/template'
             if ('text/template' === script.type) {
-                $script = $(script);
+                $script = jQuery(script);
                 name = $script.data('name').trim();
                 content = script.innerHTML.trim();
 
                 if (0 !== name.length) {
-                    templateCache[name] = content;
+                    _templateCache[name] = content;
                 } else {
                     // Output warning (no name)
                     console.warn('Template has no name');
@@ -33,6 +40,14 @@ var TemplateManager = function(defaultResolverMap) {
         });
 
         _hasLoaded = true;
+    };
+
+    var _add = function(name, template) {
+        _templateCache[name] = template;
+    };
+
+    var _remove = function(name) {
+        delete _templateCache[name];
     };
 
     var _raw = function(templateName, template) {
@@ -44,29 +59,47 @@ var TemplateManager = function(defaultResolverMap) {
 
         var _resolverMap = [];
 
+        // Return the empty string if the template is not defined
+        if (!template) {
+            return '';
+        }
+
+        // Populate the default resolvers
         if (defaultResolverMap && defaultResolverMap[templateName]) {
-            $.each(defaultResolverMap[templateName], function(index, resolver) {
+            jQuery.each(defaultResolverMap[templateName], function(index, resolver) {
                 _resolverMap.push(resolver);
             });
         }
 
+        // Populate the resolver map
         if (resolverMap) {
-            $.each(resolverMap, function(index, resolver) {
+            jQuery.each(resolverMap, function(index, resolver) {
                 _resolverMap.push(resolver);
             });
         }
-console.log('resolvermap', _resolverMap);
+
+        // Only process if there are resolvers!
         if (0 !== _resolverMap.length) {
-            $.each(_resolverMap, function(index, resolver) {
+            jQuery.each(_resolverMap, function(index, resolver) {
                 // TODO: Regex caching?
                 var regex = new RegExp('{' + resolver.regex + '}', 'gi');
-console.log('', resolver.regex);
-                var replacement = resolver.replacement;
+                var replacement;
+
                 // We allow functions for the replacement!
-                if ($.isFunction(resolver.replacement)) {
-                    replacement = resolver.replacement();
+                if (jQuery.isFunction(resolver.replacement)) {
+                    try {
+                        replacement = resolver.replacement();
+                    } catch(error) {
+                        console.error('Error while calculating replacement for', resolver.regex, error);
+                    }
+                } else {
+                    replacement = resolver.replacement;
                 }
-                processedTemplateString = processedTemplateString.replace(regex, replacement);
+
+                // Only replace if the replacement is defined
+                if (replacement) {
+                    processedTemplateString = processedTemplateString.replace(regex, replacement);
+                }
             });
         }
 
@@ -74,14 +107,20 @@ console.log('', resolver.regex);
     };
 
     var _get = function(name) {
-        // return templateCache[name];
         var rawTemplate;
 
         if (!_hasLoaded) {
             _load();
         }
 
-        rawTemplate = templateCache[name];
+        // Get the template from the cache
+        rawTemplate = _templateCache[name];
+
+        // If the template is not found in the cache, return null
+        if (!rawTemplate) {
+            console.error('Template', name, 'does not exist');
+            rawTemplate = null;
+        }
 
         return {
             process: function(resolverMap) {
@@ -91,14 +130,13 @@ console.log('', resolver.regex);
                 return _raw(name, rawTemplate);
             }
         };
-    }
+    };
 
     return {
         load: _load,
-        //reload: _load,
-        get: _get
-        //remove: // TODO: Implement remove?
-        //add: // TODO: Implement add?
+        get: _get,
+        add: _add,
+        remove: _remove
     };
 
 };

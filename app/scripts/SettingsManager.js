@@ -1,6 +1,11 @@
+/*global jQuery:false */
+/*global chrome:false */
+
 // TODO: Make singleton
+// DEPS: jQuery
 
 var SettingsManager = function() {
+    'use strict';
 
     // TODO: Load in separate file?
     var _defaultSettings = {
@@ -20,7 +25,6 @@ var SettingsManager = function() {
         ],
         'show-header': true,
         'show-name-in-header': true,
-        // TODO: Validate this is being used after being changed
         'feed-item-selector': '._4-u2.mbm._5jmm._5pat._5v3q',
         'feed-item-remove-limit': 25
     };
@@ -29,25 +33,33 @@ var SettingsManager = function() {
         return _defaultSettings;
     };
 
-    var _load = function(callback) {
+    var _load = function(successCallback, errorCallback) {
         chrome.storage.sync.get(_getDefaultSettings(), function(settings){
-            if ($.isFunction(callback)) {
-                callback(settings);
+            if (chrome.runtime.lastError && jQuery.isFunction(errorCallback)) {
+                errorCallback();
+            } else if (jQuery.isFunction(successCallback)) {
+                successCallback(settings);
             }
         });
     };
 
-    var _save = function(settings, callback) {
+    var _save = function(settings, successCallback, errorCallback) {
         chrome.storage.sync.set(settings, function() {
-            if($.isFunction(callback)) {
-                callback();
+            if (chrome.runtime.lastError && jQuery.isFunction(errorCallback)) {
+                errorCallback();
+            } else if(jQuery.isFunction(successCallback)) {
+                successCallback();
             }
         });
     };
 
-    var _clear = function(callback) {
+    var _clear = function(successCallback, errorCallback) {
         chrome.storage.sync.clear(function() {
-            chrome.storage.sync.set(_getDefaultSettings(), callback);
+            if (chrome.runtime.lastError && jQuery.isFunction(errorCallback)) {
+                errorCallback();
+            } else {
+                chrome.storage.sync.set(_getDefaultSettings(), successCallback, errorCallback);
+            }
         });
     };
 

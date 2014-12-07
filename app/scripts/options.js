@@ -1,16 +1,18 @@
+/*global jQuery:false */
+/*global TemplateManager:false */
+/*global SettingsManager:false */
+/*global UISettingsManager:false */
+
+// DEPS: jQuery, TemplateManager, SettingsManager, UISettingsManager
+
+// TODO: Use SettingsManager callbacks
+
 (function() {
     'use strict';
 
-
     // At load time
-    $(function() {
+    jQuery(function() {
 
-        // TODO: Push selector? Set the default settings?
-        // TODO: Store in seperate file?
-        // TODO: Support array for regexes
-        // TODO: Validate settings before save
-
-        // TODO: This will need to be in scope of a lot
         var _getNextRegexId = function() {
             if (!_getNextRegexId.seed) {
                 _getNextRegexId.seed = 0;
@@ -26,59 +28,59 @@
         // Load the settings
         settingsManager.load(uiSettingsManager.populateUserSpecifiedSettings);
 
-        $('.js-add-template-text').click(function() {
+        jQuery('.js-add-template-text').click(function() {
             // TODO: Validate args
             // TODO: Validate templates exist
 
-            var $this = $(this);
-            var $target = $($this.data('target'));
+            var $this = jQuery(this);
+            var $target = jQuery($this.data('target'));
 
             // Process the template
             var templateContent = templateManager.get($this.data('template-name')).process();
 
             // Add the template
-            $target.append($(templateContent));
+            $target.append(jQuery(templateContent));
         });
 
-        $('#js-regex-container').on('click', '.js-remove-button', function() {
-            $($(this).data('target-selector')).remove();
+        jQuery('#js-regex-container').on('click', '.js-remove-button', function() {
+            jQuery(jQuery(this).data('target-selector')).remove();
         });
 
         // Kick off the 'save settings' flow
-        $('#js-save-button').click(function() {
-            // TODO: Merge with default settings?
+        jQuery('#js-save-button').click(function() {
             settingsManager.save(uiSettingsManager.getUserSpecifiedSettings(), function() {
-                // TODO: Redraw the form after save
-//                $("#js-regex-container").empty();
-//                uiSettingsManager.populateUserSpecifiedSettings(settings);
-                $('#js-settings-saved-modal').modal({keyboard: true});
+                settingsManager.load(function(settings) {
+                    jQuery("#js-regex-container").empty();
+                    uiSettingsManager.populateUserSpecifiedSettings(settings);
+                    jQuery('#js-settings-saved-modal').modal({keyboard: true});
+                });
             });
         });
 
         // Open the reset modal (which may kick off the 'reset settings' flow)
-        $('#js-reset-button').click(function() {
-            $('#js-settings-confirm-reset-modal').modal({keyboard: true});
+        jQuery('#js-reset-button').click(function() {
+            jQuery('#js-settings-confirm-reset-modal').modal({keyboard: true});
         });
 
         // Kick off the 'reset settings' flow (reset, confirm, reload)
-        $('#js-confirm-reset-button').click(function() {
+        jQuery('#js-confirm-reset-button').click(function() {
             // Reset the settings and close the modal
             settingsManager.clear(function() {
                 settingsManager.save(settingsManager.getDefaultSettings(), function() {
                     // Add a listener to reload the user settings hen the success dialog is shown
-                    $('#js-settings-confirm-reset-modal').one('hidden.bs.modal', function() {
+                    jQuery('#js-settings-confirm-reset-modal').one('hidden.bs.modal', function() {
                         settingsManager.load(function(settings) {
                             // Empty the array container
-                            $("#js-regex-container").empty();
+                            jQuery("#js-regex-container").empty();
                             uiSettingsManager.populateUserSpecifiedSettings(settings);
                         });
                     });
 
                     // Hide the confirm modal
-                    $('#js-settings-confirm-reset-modal').modal('hide');
+                    jQuery('#js-settings-confirm-reset-modal').modal('hide');
 
                     // Show the reset modal
-                    $('#js-settings-reset-modal').modal({keyboard: true});
+                    jQuery('#js-settings-reset-modal').modal({keyboard: true});
                 });
             });
 
