@@ -332,11 +332,12 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
+    // TODO: jshint during build!
+    // 'jshint',
     'clean:dist',
     'chromeManifest:dist',
     'useminPrepare',
     'concurrent:dist',
-    // No UI feature selected, cssmin task will be commented
     'cssmin',
     'concat',
     'uglify',
