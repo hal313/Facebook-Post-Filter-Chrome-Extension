@@ -17,6 +17,7 @@
 // TODO: Add jsdoc
 // TODO: README.md files for all github packages
 // TODO: Update other chrome extensions with github packages
+// TODO: Add 'click to show/click to hide'
 
 (function() {
     'use strict';
