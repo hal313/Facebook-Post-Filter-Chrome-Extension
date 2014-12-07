@@ -25,8 +25,8 @@
                     'name': 'Feline'
                 },
                 {
-                    'regex': 'feet',
-                    'name': 'Feet'
+                    'regex': 'feet|beach|ocean|sand',
+                    'name': 'Feet in the ocean'
                 },
                 {
                     'regex': 'babies|infant|kids',
