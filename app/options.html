@@ -163,40 +163,43 @@
 
         </div>
 
-        <!-- build:js scripts/thirdparty.js -->
-        <!-- bower:js -->
-        <script src="bower_components/jQuery/dist/jquery.js"></script>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-        <!-- endbower -->
-        <!-- endbuild -->
+        <!-- Templates -->
+        <div>
+            <script type="text/template" data-name="regex-template">
+                <div class="form-group" id="js-regex-id-{regex-id}" data-setting-array-id="{regex-id}">
+                    <label for="js-form-regex-{regex-id}" class="control-label col-lg-1">Regex</label>
+                    <div class="col-lg-4">
+                        <input type="text" id="js-form-regex-{regex-id}" class="form-control" data-setting-array-key-validate="empty:ignore" data-setting-array-key="regex"/>
+                    </div>
 
+                    <label for="js-form-name-{regex-id}" class="control-label col-lg-1">Regex</label>
+                    <div class="col-lg-4">
+                        <input type="text" id="js-form-name-{regex-id}" class="form-control col-lg-2" data-setting-array-value="name"/>
+                    </div>
 
-        <!-- build:js scripts/vendor.js -->
-        <script src="scripts/SettingsManager.js"></script>
-        <script src="scripts/TemplateManager.js"></script>
-        <script src="scripts/UISettingsManager.js"></script>
-        <script src="scripts/options.js"></script>
-        <!-- endbuild -->
-
-
-        <script type="text/template" data-name="regex-template">
-            <div class="form-group" id="js-regex-id-{regex-id}" data-setting-array-id="{regex-id}">
-                <label for="js-form-regex-{regex-id}" class="control-label col-lg-1">Regex</label>
-                <div class="col-lg-4">
-                    <input type="text" id="js-form-regex-{regex-id}" class="form-control" data-setting-array-key-validate="empty:ignore" data-setting-array-key="regex"/>
+                    <div class="col-lg-1">
+                        <div class="btn btn-danger js-remove-button" data-target-selector="#js-regex-id-{regex-id}">Remove</div>
+                    </div>
                 </div>
+            </script>
+        </div>
 
-                <label for="js-form-name-{regex-id}" class="control-label col-lg-1">Regex</label>
-                <div class="col-lg-4">
-                    <input type="text" id="js-form-name-{regex-id}" class="form-control col-lg-2" data-setting-array-value="name"/>
-                </div>
+        <!-- Scripts -->
+        <div>
+            <!-- build:js scripts/thirdparty.js -->
+            <!-- bower:js -->
+            <script src="bower_components/jQuery/dist/jquery.js"></script>
+            <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+            <!-- endbower -->
+            <!-- endbuild -->
 
-                <div class="col-lg-1">
-                    <div class="btn btn-danger js-remove-button" data-target-selector="#js-regex-id-{regex-id}">Remove</div>
-                </div>
-            </div>
-        </script>
-
+            <!-- build:js scripts/vendor.js -->
+            <script src="scripts/SettingsManager.js"></script>
+            <script src="scripts/TemplateManager.js"></script>
+            <script src="scripts/UISettingsManager.js"></script>
+            <script src="scripts/options.js"></script>
+            <!-- endbuild -->
+        </div>
 
     </body>
 </html>
