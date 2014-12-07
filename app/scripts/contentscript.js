@@ -7,19 +7,16 @@
 // TODO: Get the post type and allow filtering by type, author, etc.
 // TODO: Advanced config for hidden text (show match?)
 // TODO: Add jshintrc
-// TODO: Write tests
-// TODO: Use GitHub packages
-// TODO: Auto-increment version
+// TODO: Write tests for this package and all github packages
 // TODO: Build correctly
-// TODO: Icon
-// TODO: grunt debug
-// TODO: Use less files
+// TODO: Get a new icon
+// TODO: Get grunt debug working
+// TODO: Use less
 // TODO: Use global/typeof window !== "undefined" ? window : this in packages
-// TODO: Get degub working
 // TODO: Minimize CSS
-// TODO: jsdoc
-
-// DEPS: jQuery
+// TODO: Add jsdoc
+// TODO: README.md files for all github packages
+// TODO: Update other chrome extensions with github packages
 
 (function() {
     'use strict';
