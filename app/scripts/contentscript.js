@@ -7,6 +7,10 @@
 // TODO: Get the post type and allow filtering by type, author, etc.
 // TODO: Advanced config for hidden text (show match?)
 // TODO: Add jshintrc
+// TODO: Write tests
+// TODO: Use GitHub packages
+// TODO: Auto-increment version
+// TODO: Build correctly
 
 // DEPS: jQuery, bootstrap
 

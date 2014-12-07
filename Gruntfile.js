@@ -314,7 +314,7 @@ module.exports = function (grunt) {
     'useminPrepare',
     'concurrent:dist',
     // No UI feature selected, cssmin task will be commented
-    // 'cssmin',
+    'cssmin',
     'concat',
     'uglify',
     'copy',
