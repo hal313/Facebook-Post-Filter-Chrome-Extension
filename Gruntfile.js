@@ -319,7 +319,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('debug', function () {
     grunt.task.run([
-      //'jshint',
+      // TODO: jshint during debug
+      // 'jshint',
       'concurrent:chrome',
       'connect:chrome',
       'watch'
