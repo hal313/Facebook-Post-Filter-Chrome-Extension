@@ -4,7 +4,11 @@
     "description": "The name of the application"
   },
   "appDescription": {
-    "message": "Filter those pesky Facebook posts!",
+    "message": "Allows automated removal of Facebook posts which match user supplied conditions.",
     "description": "The description of the application"
-  }
+  },
+    "appShortName": {
+        "message": "Filter those pesky Facebook posts!",
+        "description": "The short description of the application"
+    }
 }
