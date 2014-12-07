@@ -2,6 +2,7 @@
 /*global chrome:false */
 
 // TODO: Make singleton
+// TODO: Save callbacks
 // DEPS: jQuery
 
 var SettingsManager = function() {
@@ -58,7 +59,13 @@ var SettingsManager = function() {
             if (chrome.runtime.lastError && jQuery.isFunction(errorCallback)) {
                 errorCallback();
             } else {
-                chrome.storage.sync.set(_getDefaultSettings(), successCallback, errorCallback);
+                chrome.storage.sync.set(_getDefaultSettings(), function() {
+                    if(chrome.runtime.lastError && jQuery.isFunction(errorCallback)) {
+                        errorCallback();
+                    } else if(jQuery.isFunction(successCallback)) {
+                        successCallback();
+                    }
+                });
             }
         });
     };
@@ -71,3 +78,7 @@ var SettingsManager = function() {
     };
 
 };
+
+// TODO: jquery pattern
+// global
+//(typeof window !== "undefined" ? window : this)
