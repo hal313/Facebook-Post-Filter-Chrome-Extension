@@ -14,6 +14,7 @@
 // TODO: Icon
 // TODO: grunt debug
 // TODO: Use less files
+// TODO: Use global/typeof window !== "undefined" ? window : this in packages
 
 // TODO: Get working locally
 // TODO: Fix compressed reset functionality
@@ -63,12 +64,12 @@
 
                     // Create a new item
                     // TODO: CLOSURE!
-                    // TODO: Add close button?
+                    // TODO: Add dismiss button to header
 
                     // Hide the feed item
-                    // TODO: .fadeOut() instead?
-                    // $feedItem.fadeOut();
-                    $feedItem.hide();
+                    // TODO: .fadeOut() instead? (as option)
+                    $feedItem.fadeOut();
+//                    $feedItem.hide();
 
                     // Insert the new item
                     if (!!settings['show-header']) {
