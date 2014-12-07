@@ -1,5 +1,5 @@
 {
-  "name": "facebook-post-filter",
+  "name": "facebook-post-filter-chrome-extension",
   "version": "0.0.0",
   "dependencies": {
     "jQuery": "~2.1.1",
