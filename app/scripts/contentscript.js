@@ -17,6 +17,7 @@
 // TODO: Use global/typeof window !== "undefined" ? window : this in packages
 // TODO: Get degub working
 // TODO: Minimize CSS
+// TODO: jsdoc
 
 // DEPS: jQuery
 
