@@ -2,7 +2,7 @@
 /*global chrome:false */
 
 // TODO: Make singleton
-// TODO: Save callbacks
+// TODO: Safe callbacks
 // DEPS: jQuery
 
 var SettingsManager = function() {
@@ -78,7 +78,3 @@ var SettingsManager = function() {
     };
 
 };
-
-// TODO: jquery pattern
-// global
-//(typeof window !== "undefined" ? window : this)

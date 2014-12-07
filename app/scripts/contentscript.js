@@ -15,9 +15,7 @@
 // TODO: grunt debug
 // TODO: Use less files
 // TODO: Use global/typeof window !== "undefined" ? window : this in packages
-
-// TODO: Get working locally
-// TODO: Fix compressed reset functionality
+// TODO: Get degub working
 
 // DEPS: jQuery
 
@@ -38,7 +36,7 @@
 
         // Determine if the text matches
         var isMatch = function(text, matcher) {
-            // TODO: Cachce the match regexes!
+            // TODO: Cache the regexes!
             return new RegExp(matcher, 'i').test(text);
         };
 
@@ -49,7 +47,6 @@
 
         var removedItemsLimit = settings['feed-item-remove-limit'];
 
-        // TODO: Remove 'text' and 'regex' param?
         var removeFeedItem = function($feedItem, text, regex) {
             var removed = false;
 
@@ -73,7 +70,7 @@
 
                     // Insert the new item
                     if (!!settings['show-header']) {
-                        // TODO: New option for hidden text?
+                        // TODO: New option for hidden header text?
                         var headerText = 'Hidden';
                         if (!!settings['show-name-in-header']) {
                             headerText += ' [' + regex.name + ']';
