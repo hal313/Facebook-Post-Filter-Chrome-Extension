@@ -1,6 +1,12 @@
 {
-  "name": "facebook-post-filter",
+  "name": "facebook-post-filter-chrome-extension",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "jQuery": "~2.1.1",
+    "bootstrap": "~3.3.1",
+    "chrome-extension-settings-manager": "~0.0.4",
+    "template-manager": "~0.0.2",
+    "ui-settings-manager": "~0.0.2"
+  },
   "devDependencies": {}
 }

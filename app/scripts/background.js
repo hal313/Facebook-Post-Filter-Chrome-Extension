@@ -1,7 +1,11 @@
-'use strict';
+/*global chrome:false */
 
-chrome.runtime.onInstalled.addListener(function (details) {
-  console.log('previousVersion', details.previousVersion);
-});
+(function() {
+    'use strict';
 
-console.log('\'Allo \'Allo! Event Page');
+    // Listen for installs
+    chrome.runtime.onInstalled.addListener(function (details) {
+        //console.log('previousVersion', details.previousVersion);
+    });
+
+})();

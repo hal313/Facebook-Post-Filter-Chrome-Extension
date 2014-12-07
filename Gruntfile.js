@@ -12,7 +12,10 @@ module.exports = function (grunt) {
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
-  // Time how long tasks take. Can help when optimizing build times
+    // grunt.loadNpmTasks('grunt-wiredep');
+
+
+    // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
   // Configurable paths
@@ -207,7 +210,7 @@ module.exports = function (grunt) {
     // cssmin: {
     //   dist: {
     //     files: {
-    //       '<%= config.dist %>/styles/main.css': [
+    //       '<%= config.dist %>/styles/contentscript.css': [
     //         '<%= config.app %>/styles/{,*/}*.css'
     //       ]
     //     }
@@ -291,12 +294,33 @@ module.exports = function (grunt) {
           dest: ''
         }]
       }
-    }
+    },
+
+      wiredep: {
+
+          task: {
+
+              // Point to the files that should be updated when
+              // you run `grunt wiredep`
+              src: [
+                  'app/*.html'   // .html support...
+              ],
+
+              options: {
+                  // See wiredep's configuration documentation for the options
+                  // you may pass:
+
+                  // https://github.com/taptapship/wiredep#configuration
+              }
+          }
+      }
+
   });
 
   grunt.registerTask('debug', function () {
     grunt.task.run([
-      'jshint',
+      // TODO: jshint during debug
+      // 'jshint',
       'concurrent:chrome',
       'connect:chrome',
       'watch'
@@ -309,12 +333,13 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
+    // TODO: jshint during build!
+    // 'jshint',
     'clean:dist',
     'chromeManifest:dist',
     'useminPrepare',
     'concurrent:dist',
-    // No UI feature selected, cssmin task will be commented
-    // 'cssmin',
+    'cssmin',
     'concat',
     'uglify',
     'copy',
