@@ -20,6 +20,8 @@
 // TODO: Add 'click to show/click to hide'
 // TODO: Do I need /bower.json?
 // TODO: Remove from bitbucket
+// TODO: Highlight the matches in a post
+// TODO: Abort filtering after a match is found? (do not abort if highlighting is enabled)
 
 (function() {
     'use strict';
