@@ -25,7 +25,7 @@
                     'name': 'Hello Kitty!'
                 },
                 {
-                    'regex': '\\bfeet\\b|\\bbeach\\b|\\bocean\\b|\\bsand\\b',
+                    'regex': '\\bfeet\\b|\\bbeach\\b|\\bocean\\b',
                     'name': 'Feet in the sand'
                 },
                 {
