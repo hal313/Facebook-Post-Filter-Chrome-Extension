@@ -13,6 +13,31 @@ body {
     margin: 0 0 10px 10px;
 }
 
-.accordion-container {
+
+.settings-container .instruction {
+    margin-left: 1em;
+    margin-bottom: 1em;
+    margin-right: 1em;
+}
+
+div.newline {
     margin-top: 1em;
+}
+
+.settings-container dl {
+    margin-top: 1em;
+    margin-left: 1em;
+}
+
+.settings-container dt {
+    margin-top: 1em;
+}
+
+.settings-container .alert .checkbox label {
+    color: black;
+}
+
+.settings-container .alert .form-group {
+    margin-top: 1em;
+    margin-bottom: 0;
 }

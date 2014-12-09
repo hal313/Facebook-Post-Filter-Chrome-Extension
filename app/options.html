@@ -22,9 +22,61 @@
         <div class="container">
 
             <!-- The form -->
-            <form role="form" class="form-horizontal">
+            <form role="form" class="form-horizontal settings-container">
+
+                <div class="alert alert-danger">
+                    Currently, not all post types are filtered. Original posts (including posts which
+                    contain media such as videos or images) are filtered; but shares of existing content
+                    are not filtered.
+                </div>
+
+                <div class="alert alert-info">
+                    Filters are expressed using
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Writing_a_Regular_Expression_Pattern" target="_blank">JavaScript regular expressions</a>.
+                    Regular expressions can be very powerful, but also very confusing. In general, you only need to
+                    know a few things about regular expressions in order to use filter out unwanted content.
+                    <dl>
+                        <dt>
+                            OR operator
+                        </dt>
+                        <dd>
+                            Specifying the OR operator (the '|' character) allows you provide multiple
+                            phrases to filter in one regular expression.
+                        </dd>
+                        <dt>
+                            Word Boundaries
+                        </dt>
+                        <dd>
+                            The word boundary character (\b) allows you to specify that you are
+                            searching for the whole word, not just part of it. For example, if the you specified
+                            simply 'cat', your filter would include 'cat', 'catch' and 'concat'. But if you specified
+                            '\bcat\b', only the phrase 'cat' would be included (and not 'catch' or 'concat'. This
+                            is because the word boundary searches for the whole word 'cat' and <i>nothing else</i>.
+                            The default options include the word boundary for this reason.
+                        </dd>
+                    </dl>
+
+                    <div class="newline">
+                        Putting it all together, the regular expression
+                        <b>'\\bcat\\b|\\bkittens\\b|\\bkitty\\b'</b> will filter out posts which have the term
+                        'cat', 'kitten' or 'kitty' as whole words.
+                    </div>
+
+                    <div class="newline">
+                        <b>If this is all confusing, you can simply specify each phrase in its own rule, being mindful to
+                        place a \b before and after the phrase.</b>
+                    </div>
+
+                </div>
 
                 <div class="simple-border">
+
+                    <div class="alert alert-success instruction">
+                        This is where you define your filters. Filters have two components, the <i>regular
+                        expression</i> and the <i>rule name</i>. The regular expression defines what content is filtered
+                        and the rule name is simply a label to identify which rule matched filtered content. By default,
+                        the rule name is displayed in the notification of any post which matches.
+                    </div>
 
                     <!-- The regex container button -->
                     <div id="js-regex-container" data-setting-type="array" data-setting-name="regexes" data-template-name="regex-template">
@@ -37,12 +89,21 @@
 
                 <!-- Checkboxes -->
                 <div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="js-form-show-header" data-setting-type="boolean" data-setting-name="show-header"> Show header</label>
+                    <div class="alert alert-success">
+                        This setting determines if a header will be shown where a post has been filtered out. If checked,
+                        a notification will appear in place of the post. If you click on the notification, the original
+                        post will be shown. Clicking on the notification again will hide the post.
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="js-form-show-header" data-setting-type="boolean" data-setting-name="show-header"> Show notification</label>
+                        </div>
                     </div>
 
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="js-form-show-name-in-header" data-setting-type="boolean" data-setting-name="show-name-in-header"> Show the name of the match in header</label>
+                    <div class="alert alert-success">
+                        This setting will show the name of the matching rule in the notification if checked. If
+                        unchecked, the rule name will not be shown.
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="js-form-show-name-in-header" data-setting-type="boolean" data-setting-name="show-name-in-header"> Show the name of the match in header</label>
+                        </div>
                     </div>
                 </div>
 
@@ -64,42 +125,43 @@
                                         This setting is used to select each feed item for inspection. Usually, this will not
                                         have to be changed. In the event that Facebook changes their CSS to denote different
                                         classes for feed items, this setting should be updated.
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="feed-item-selector" class="control-label col-lg-2">Root Selector</label>
-                                        <div class="col-lg-10">
-                                            <input type="text" id="feed-item-selector" class="form-control" data-setting-type="string" data-setting-name="feed-item-selector"/>
+                                        <div class="form-group">
+                                            <label for="feed-item-selector" class="control-label col-lg-2">Root Selector</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" id="feed-item-selector" class="form-control" data-setting-type="string" data-setting-name="feed-item-selector"/>
+                                            </div>
                                         </div>
                                     </div>
+
 
                                     <div class="alert alert-warning">
                                         This setting determines the number of feed items to replace. If set to -1, then
                                         no limit is set. Take care in setting this to large numbers, as the performance
                                         on older or low-powered hardware may suffer. It is recommended to keep this
                                         value relatively small.
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="feed-item-remove-limit" class="control-label col-lg-2">Removal Limit</label>
-                                        <!-- // TODO: Enforce that this is a number -->
-                                        <div class="col-lg-10">
-                                            <input type="number" id="feed-item-remove-limit" class="form-control" data-setting-type="number" data-setting-name="feed-item-remove-limit"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="alert alert-warning">
-                                        This setting will enable console output for debugging purposes.
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="debug" class="control-label col-lg-2">Debug</label>
-                                        <div class="col-lg-10">
-                                            <div class="checkbox">
-                                                <label><input type="checkbox" id="debug" data-setting-type="boolean" data-setting-name="debug"> Debug</label>
+                                        <div class="form-group">
+                                            <label for="feed-item-remove-limit" class="control-label col-lg-2">Removal Limit</label>
+                                            <!-- // TODO: Enforce that this is a number -->
+                                            <div class="col-lg-10">
+                                                <input type="number" id="feed-item-remove-limit" class="form-control" data-setting-type="number" data-setting-name="feed-item-remove-limit"/>
                                             </div>
                                         </div>
                                     </div>
+
+
+
+                                    <div class="alert alert-warning">
+                                        This setting will enable console output for debugging purposes.
+                                        <div class="form-group">
+                                            <label for="debug" class="control-label col-lg-2">Debug</label>
+                                            <div class="col-lg-10">
+                                                <div class="checkbox">
+                                                    <label><input type="checkbox" id="debug" data-setting-type="boolean" data-setting-name="debug"> Enabled</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                 </div>
                             </div>
@@ -180,13 +242,13 @@
         <div>
             <script type="text/template" data-name="regex-template">
                 <div class="form-group" id="js-regex-id-{regex-id}" data-setting-array-id="{regex-id}">
-                    <label for="js-form-regex-{regex-id}" class="control-label col-lg-1">Regex</label>
-                    <div class="col-lg-4">
+                    <label for="js-form-regex-{regex-id}" class="control-label col-lg-2">Regular Expression</label>
+                    <div class="col-lg-3">
                         <input type="text" id="js-form-regex-{regex-id}" class="form-control" data-setting-array-key-validate="empty:ignore" data-setting-array-key="regex"/>
                     </div>
 
-                    <label for="js-form-name-{regex-id}" class="control-label col-lg-1">Regex</label>
-                    <div class="col-lg-4">
+                    <label for="js-form-name-{regex-id}" class="control-label col-lg-2">Rule Name</label>
+                    <div class="col-lg-3">
                         <input type="text" id="js-form-name-{regex-id}" class="form-control col-lg-2" data-setting-array-value="name"/>
                     </div>
 
