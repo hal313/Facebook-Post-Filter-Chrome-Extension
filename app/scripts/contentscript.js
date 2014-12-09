@@ -135,7 +135,9 @@
                         }
                     });
                 });
-                console.log('-', new Date().getTime() - startTime, 'ms', iterationRemovedItemsCount, totalRemovedItemsCount);
+                // TODO: Option to debug/debug on true
+                // TODO: Settings should enable/disable on ref=value
+                //console.log('-', new Date().getTime() - startTime, 'ms', iterationRemovedItemsCount, totalRemovedItemsCount);
             });
 
             // Define what element should be observed by the observer
