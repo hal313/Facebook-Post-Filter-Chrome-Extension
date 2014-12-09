@@ -21,15 +21,15 @@
         var _defaultSettings = {
             'regexes': [
                 {
-                    'regex': 'cat|kittens|kitty',
-                    'name': 'Feline'
+                    'regex': '\\bcat\\b|\\bkittens\\b|\\bkitty\\b',
+                    'name': 'Hello Kitty!'
                 },
                 {
-                    'regex': 'feet|beach|ocean|sand',
-                    'name': 'Feet in the ocean'
+                    'regex': '\\bfeet\\b|\\bbeach\\b|\\bocean\\b|\\bsand\\b',
+                    'name': 'Feet in the sand'
                 },
                 {
-                    'regex': 'babies|infant|kids',
+                    'regex': '\\bbabies\\b|\\binfant\\b|\\bkids\\b',
                     'name': 'Babies'
                 }
             ],
