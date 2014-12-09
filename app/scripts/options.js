@@ -36,7 +36,8 @@
             'show-header': true,
             'show-name-in-header': true,
             'feed-item-selector': '._4-u2.mbm._5jmm._5pat._5v3q',
-            'feed-item-remove-limit': 25
+            'feed-item-remove-limit': 25,
+            'debug': false
         };
 
         // Pass in a default resolver map, keyed by the template name
