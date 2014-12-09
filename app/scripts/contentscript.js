@@ -18,6 +18,8 @@
 // TODO: README.md files for all github packages
 // TODO: Update other chrome extensions with github packages
 // TODO: Add 'click to show/click to hide'
+// TODO: Do I need /bower.json?
+// TODO: Remove from bitbucket
 
 (function() {
     'use strict';
