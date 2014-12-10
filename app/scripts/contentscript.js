@@ -3,25 +3,24 @@
 /*global console:false */
 /*global MutationObserver:false */
 
-// TODO: Use logger instead of console
 // TODO: Get the post type and allow filtering by type, author, etc.
 // TODO: Advanced config for hidden text (show match?)
-// TODO: Add jshintrc
 // TODO: Write tests for this package and all github packages
 // TODO: Build correctly
 // TODO: Get a new icon
 // TODO: Get grunt debug working
 // TODO: Use less
 // TODO: Use global/typeof window !== "undefined" ? window : this in packages
-// TODO: Minimize CSS
 // TODO: Add jsdoc
 // TODO: README.md files for all github packages
-// TODO: Update other chrome extensions with github packages
+// TODO: Update other chrome extensions with bower packages
 // TODO: Add 'click to show/click to hide'
-// TODO: Do I need /bower.json?
 // TODO: Remove from bitbucket
 // TODO: Highlight the matches in a post
 // TODO: Abort filtering after a match is found? (do not abort if highlighting is enabled)
+// TODO: Put git repo in options page + license
+// TODO: Enforce new operator for all dep libs
+// TODO: Add version members for all dep libs?
 
 (function() {
     'use strict';
