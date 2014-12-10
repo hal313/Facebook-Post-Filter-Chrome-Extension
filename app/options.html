@@ -241,19 +241,19 @@
         <!-- Templates -->
         <div>
             <script type="text/template" data-name="regex-template">
-                <div class="form-group" id="js-regex-id-{regex-id}" data-setting-array-id="{regex-id}">
-                    <label for="js-form-regex-{regex-id}" class="control-label col-lg-2">Regular Expression</label>
+                <div class="form-group" id="js-regex-id-${regex-id}" data-setting-array-id="${regex-id}">
+                    <label for="js-form-regex-${regex-id}" class="control-label col-lg-2">Regular Expression</label>
                     <div class="col-lg-3">
-                        <input type="text" id="js-form-regex-{regex-id}" class="form-control" data-setting-array-key-validate="empty:ignore" data-setting-array-key="regex"/>
+                        <input type="text" id="js-form-regex-${regex-id}" class="form-control" data-setting-array-key-validate="empty:ignore" data-setting-array-key="regex"/>
                     </div>
 
-                    <label for="js-form-name-{regex-id}" class="control-label col-lg-2">Rule Name</label>
+                    <label for="js-form-name-${regex-id}" class="control-label col-lg-2">Rule Name</label>
                     <div class="col-lg-3">
-                        <input type="text" id="js-form-name-{regex-id}" class="form-control col-lg-2" data-setting-array-value="name"/>
+                        <input type="text" id="js-form-name-${regex-id}" class="form-control col-lg-2" data-setting-array-value="name"/>
                     </div>
 
                     <div class="col-lg-1">
-                        <div class="btn btn-danger js-remove-button" data-target-selector="#js-regex-id-{regex-id}">Remove</div>
+                        <div class="btn btn-danger js-remove-button" data-target-selector="#js-regex-id-${regex-id}">Remove</div>
                     </div>
                 </div>
             </script>
@@ -265,10 +265,14 @@
             <!-- bower:js -->
             <script src="bower_components/jQuery/dist/jquery.js"></script>
             <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-            <script src="bower_components/chrome-extension-settings-manager/SettingsManager.js"></script>
-            <script src="bower_components/template-manager/TemplateManager.js"></script>
-            <script src="bower_components/ui-settings-manager/UISettingsManager.js"></script>
+            <script src="bower_components/chrome-extension-settings-manager/dist/SettingsManager.js"></script>
+            <!--<script src="bower_components/template-manager/dist/TemplateManager.js"></script>-->
+            <script src="bower_components/ui-settings-manager/dist/UISettingsManager.js"></script>
             <!-- endbower -->
+            <!-- endbuild -->
+
+            <!-- build:js scripts/TemplateManager.js -->
+            <script src="TemplateManager.js"></script>
             <!-- endbuild -->
 
             <!-- build:js scripts/vendor.js -->
