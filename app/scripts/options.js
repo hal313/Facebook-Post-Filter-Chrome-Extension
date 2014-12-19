@@ -1,6 +1,7 @@
 /*global jQuery:false */
 /*global TemplateManager:false */
 /*global SettingsManager:false */
+/*global ChromeExtensionSettingsManager:false */
 /*global UISettingsManager:false */
 
 // TODO: Use SettingsManager callbacks
@@ -42,7 +43,7 @@
 
         // Pass in a default resolver map, keyed by the template name
         var templateManager = new TemplateManager({'regex-template': [{regex: 'regex-id', replacement: _getNextRegexId}]});
-        var settingsManager = new SettingsManager(_defaultSettings);
+        var settingsManager = new SettingsManager(new ChromeExtensionSettingsManager());
         var uiSettingsManager = new UISettingsManager(templateManager);
 
         // Load the settings
@@ -86,7 +87,7 @@
         jQuery('#js-confirm-reset-button').click(function() {
             // Reset the settings and close the modal
             settingsManager.clear(function() {
-                settingsManager.save(settingsManager.getDefaultSettings(), function() {
+                settingsManager.save(_defaultSettings, function() {
                     // Add a listener to reload the user settings hen the success dialog is shown
                     jQuery('#js-settings-confirm-reset-modal').one('hidden.bs.modal', function() {
                         settingsManager.load(function(settings) {
