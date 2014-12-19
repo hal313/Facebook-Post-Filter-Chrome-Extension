@@ -71,7 +71,7 @@
         jQuery('#js-save-button').click(function() {
             settingsManager.save(uiSettingsManager.getUserSpecifiedSettings(), function() {
                 settingsManager.load(function(settings) {
-                    jQuery("#js-regex-container").empty();
+                    jQuery('#js-regex-container').empty();
                     uiSettingsManager.populateUserSpecifiedSettings(settings);
                     jQuery('#js-settings-saved-modal').modal({keyboard: true});
                 });
@@ -92,7 +92,7 @@
                     jQuery('#js-settings-confirm-reset-modal').one('hidden.bs.modal', function() {
                         settingsManager.load(function(settings) {
                             // Empty the array container
-                            jQuery("#js-regex-container").empty();
+                            jQuery('#js-regex-container').empty();
                             uiSettingsManager.populateUserSpecifiedSettings(settings);
                         });
                     });

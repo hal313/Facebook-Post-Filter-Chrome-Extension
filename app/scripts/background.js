@@ -1,12 +1,11 @@
-/*global chrome:false */
 
 (function() {
     'use strict';
 
+    // TODO: Fill this out
     // Listen for installs
-    chrome.runtime.onInstalled.addListener(function (details) {
-        // TODO: Fill this out
-        //console.log('previousVersion', details.previousVersion);
-    });
+    // chrome.runtime.onInstalled.addListener(function (details) {
+    //     //console.log('previousVersion', details.previousVersion);
+    // });
 
 })();
