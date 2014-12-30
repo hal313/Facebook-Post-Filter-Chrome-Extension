@@ -7,6 +7,6 @@
         "chrome-extension-settings-manager": "~0.0.14",
         "template-manager": "~1.1.6",
         "settings-manager": "~0.0.10",
-        "ui-settings-manager": "~1.0.17"
+        "ui-settings-manager": "~2.0.3"
     }
 }
