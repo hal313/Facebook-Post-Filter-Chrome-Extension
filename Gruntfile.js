@@ -266,7 +266,9 @@ module.exports = function (grunt) {
         chromeManifest: {
             dist: {
                 options: {
-                    buildnumber: true,
+                    // buildnumber: true,
+                    // Use the version from the package.json file
+                    buildnumber: require('./package.json').version,
                     background: {
                         target: 'scripts/background.js',
                         exclude: [
