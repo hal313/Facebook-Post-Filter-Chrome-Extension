@@ -340,7 +340,7 @@ module.exports = function (grunt) {
     // TODO: Build should not uglify
     grunt.registerTask('build', [
         // TODO: jshint during build!
-        // 'jshint',
+        'jshint',
         'clean:dist',
         'chromeManifest:dist',
         'useminPrepare',
